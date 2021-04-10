@@ -50,11 +50,18 @@ myparsers
             └── vendor
                 ├── MANIFEST.yml
                 ├── parsing.punch
-                ├── resources
-                │   └── resource.json
+                ├── resource.json
                 └── test
                     └── unit.json
 ```
+
+Remember that:
+
+* a 'file.punch' represent a punchlet, i.e. a piece of code written using the punch language. This is where you write the actual logic of your parsers.
+* punchlets can ingest addition json resource files. The 'resource.json' file is an example of that.
+* the punch provides a unit test tool. The tes/unit.json files lets you define easily unit test for each of your punchlet.
+
+In short, you have everything to easily code, testn package and deploy your parsers. 
 
 ## Understand Punch Parsers
 
