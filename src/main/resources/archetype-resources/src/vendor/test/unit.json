@@ -1,0 +1,10 @@
+{
+  "input": {
+    "message": "Hello Sample Parser"
+  },
+  "output": {
+    "includes": {
+      "test": true
+    }
+  }
+}

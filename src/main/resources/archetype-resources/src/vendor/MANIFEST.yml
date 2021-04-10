@@ -1,0 +1,10 @@
+version: 1.0
+name: "sample punch parser"
+description: "sample log parser description"
+tags:
+- web  
+author: dimi
+performance: 10000
+vendor: vendor
+structure:
+- parsing.punch
