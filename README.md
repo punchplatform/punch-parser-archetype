@@ -45,8 +45,6 @@ myparsers
             ├── common
             │   ├── MANIFEST.yml
             │   ├── common.punch
-            │   ├── resources
-            │   │   └── common-resources.json
             │   └── test
             │       └── unit.json
             └── vendor
@@ -132,10 +130,10 @@ dag:
     json_resources:
     - com/mycompany/vendor/resources.json
     punchlets:
-    - com/mycompany/common.punch
+    - com/mycompany/common/common.punch
     - com/mycompany/vendor/parsing.punch
   subscribe:
   - component: syslog_input
     stream: logs
-```
+``
 
