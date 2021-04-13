@@ -165,5 +165,4 @@ dag:
   subscribe:
   - component: syslog_input
     stream: logs
-``
-
+```
