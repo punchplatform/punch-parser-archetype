@@ -1,14 +1,18 @@
-version: 1.0
-name: "sample punch parser"
-description: "a sample parser for you to easily start coding your own"
-tags:
-- sample  
-author: dimi
-performance: 3000
-vendor: thales
-punchlets:
-- parser.punch
-resources:
-- resources/color_codes.json
-groks:
-- groks/pattern.grok
+apiVersion: 1.0
+kind: PunchParserArchive
+metadata:
+  name: "sample punch parser"
+  labels:
+    description: "a sample parser for you to easily start coding your own"
+    category: sample
+    author: "punch team"
+    performance: 3000
+    vendor: thales
+spec:
+  punchlets:
+  - parser.punch
+  resources:
+  - resources/color_codes.json
+  groks:
+  - groks/pattern.grok
+
