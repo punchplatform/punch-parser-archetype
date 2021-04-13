@@ -6,7 +6,6 @@
   <artifactId>parser</artifactId>
   <version>1.0.0</version>
   <packaging>maven-archetype</packaging>
- 
   <build>
     <extensions>
       <extension>
