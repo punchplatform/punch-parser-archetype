@@ -12,5 +12,11 @@
                 <include>**/*assembly.xml</include>
             </includes>
         </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory>tools</directory>
+            <includes>
+                <include>**/*test.sh</include>
+            </includes>
+        </fileSet>
     </fileSets>
 </archetype-descriptor>

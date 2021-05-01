@@ -107,17 +107,23 @@ is defined using a 'MANIFEST.yaml' file.
 That file defines the essential information about the parser. Here the sample MANIFEST.yaml generated above:
 
 ```yaml
-version: 1.0
-name: "sample punch parser"
-description: "sample log parser description"
-tags:
-- web  
-author: dimi
-performance: 10000
-vendor: vendor
-punchlets:
-- common/common.punch
-- common/geoip.punch
+apiVersion: 1.0
+kind: PunchParserArchive
+metadata:
+  name: "sample punch parser"
+  labels:
+    description: "a sample parser for you to easily start coding your own"
+    category: sample
+    author: "punch team"
+    performance: 3000
+    vendor: thales
+spec:
+  punchlets:
+  - parser.punch
+  resources:
+  - resources/color_codes.json
+  groks:
+  - groks/pattern.grok
 ```
 
 ## Package Your Parser
