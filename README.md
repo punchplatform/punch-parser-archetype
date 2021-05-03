@@ -3,28 +3,30 @@
 Quickstart generator to create your parser development project. 
 
 On the punch you develop parsers as part of maven projects. A single project can contain
-on or several so-called "parser". 
-
-Each parser consists of :
+on or several groups. Each group consists of :
 
 * one or several punchlets. 
 * optional grok patterns
 * optional resource files
+* optional unit and sample test files
 
-Together the punchlets parse, normalise and enrich incoming logs, whatever their format is. 
+Together the punchlets parse, normalise and enrich the incoming logs, whatever their format is. 
 
-The punch comes equiped with many parsers. Should you write your own,
-this project is for you. 
+The punch comes equiped with many parsers. Should you write your own, this project is for you. 
 
 ## Basics
 
-To create punch parsers, clone or download this repository and simply execute 
+First refer to the online [punchplatform documentation](https://doc.punchplkatform.com). TWhat is explained here required
+at minimum a punch 6.3.3. It is best to use a 6.3.4 or higher. 
+
+To create punch parsers, clone or download this repository, 
+go to that directory and simply execute 
 
 ```sh
 mvn clean install
 ```
 
-From there create your punch parsers maven project as follows: 
+From there leave that directory and in some folder that suits you,  create your new punch maven project as follows: 
 
 ```sh
 mvn archetype:generate \
@@ -42,34 +44,38 @@ If you execute the previous command you will get the following layout:
 ├── assembly
 │   └── assembly.xml
 ├── pom.xml
-└── src
-    └── com
-        └── mycompany
-            └── sample
-                ├── MANIFEST.yml
-                ├── groks
-                │   └── pattern.grok
-                ├── parser.punch
-                ├── resources
-                │   └── color_codes.json
-                └── test
-                    └── unit.json
+├── src
+│   └── com
+│       └── mycompany
+│           └── sample
+│               ├── MANIFEST.yml
+│               ├── groks
+│               │   └── pattern.grok
+│               ├── enrich.punch
+│               ├── parser.punch
+│               ├── resources
+│               │   └── color_codes.json
+│               └── test
+│                   ├── sample.txt
+│                   ├── unit_chain.json
+│                   └── unit_punchlet.json
+└── tools
+    └── test.sh
 ```
 
-Where
+Where:
 
 * 'com/mycompany/parsers/sample' is a fully qualified name of your parsers. That will be the way to uniquely identify, and deploy your parsers on a production punch.
-* 'com/mycompany/parsers/sample/parser.punch' is a sample punch parser. Check it out it illustrates the basics.
- This is where you write the actual logic of your parsers.
-* 'com/mycompany/parsers/sample/groks/pattern.grok' is a sample grok pattern. The punch comes with many patterns directlt loaded, but here is how you can add your own.
-* 'com/mycompany/parsers/sample/resources/polor_codes.json' is a sample resource files. This lets you enrich logs or design fully generic punchlets. In this cas it is used to add a numerical color code froma  color string value ('red' or 'green').
-* 'com/mycompany/parsers/sample/test/unit.json' is a punch unit test file. That lets you define unit test to ensure your parser if correctly tested before being deployed. 
-
-In short, you have everything to easily code, test and package and deploy your parsers.
+* `parser.punch` and `enrich.punch` are sample punchlets. Check it out it illustrates the basics. This is where you write the actual logic of your log parsing or more generally data transformation.
+* `groks/pattern.grok` is a sample grok pattern. The punch comes with many patterns directly loaded, but here is how you can add your own.
+* `resources/color_code.json` is a sample resource files. In this sample it is used to add a numerical color code from a color string value ('red' or 'green').
+* `test/unit_chain.json` and `test/unit_punchlet.json` are punch unit test files. That lets you define unit tests to ensure each punchlet or a sequence of punchlets behave exactly as you expect.
+* `test/sample.txt` is an example a sample log file. These can be used to test
+a large number of logs. 
 
 ## Understand Punch Parsers Archives
 
-Here is the logic. First note that this layout is designed to hold one or several parsers.
+Here is the logic. First note that this layout is designed to hold one or several group of punchlets.
 Each 'parser' is a set of punchlets, groks and resources that take care of some
 data transformation, normalisationa nd enrichment. 
 

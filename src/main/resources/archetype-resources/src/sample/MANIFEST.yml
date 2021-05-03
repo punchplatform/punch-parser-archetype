@@ -1,18 +1,36 @@
+---
 apiVersion: 1.0
-kind: PunchParserArchive
+kind: PunchletGroup
 metadata:
-  name: "sample punch parser"
-  labels:
-    description: "a sample parser for you to easily start coding your own"
-    category: sample
-    author: "punch team"
-    performance: 3000
-    vendor: thales
+  name: "sample group of related punchlets."
 spec:
   punchlets:
-  - parser.punch
-  resources:
-  - resources/color_codes.json
-  groks:
-  - groks/pattern.grok
-
+  - punchlet: parser.punch
+    labels:
+       description: "a sample parser for you to easily start coding your own"
+       performance: 3000
+       category: sample
+       author: "punch team"
+       vendor: thales
+    resources:
+    - resources/color_codes.json
+    groks:
+    - groks/pattern.grok
+    inputStream:
+    - name: logs
+      fields:
+      - name: data
+        type: string
+  - punchlet: enrich.punch
+    labels:
+       description: "a sample parser for you to easily start coding your own"
+       performance: 2000
+       category: sample
+       author: "punch team"
+       vendor: thales
+    inputStream:
+    - name: logs
+      fields:
+      - name: data
+        type: string
+        

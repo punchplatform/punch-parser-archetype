@@ -1,0 +1,5 @@
+{
+	if ([logs][log][city]) {
+		[logs][log][enriched] = true;
+	}
+}
