@@ -1,4 +1,5 @@
 {
+	// we add a simple boolean for the sake of illustraing punchlet chaining.
 	if ([logs][log][city]) {
 		[logs][log][enriched] = true;
 	}

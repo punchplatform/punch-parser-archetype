@@ -1,7 +1,5 @@
 {
 
-	print(root);
-	
 	 // the expected input string is a key value format
 	 // For example "color=red city=Rome uri=https://punchplatform.com"
 	 // First convert it to a tuple
@@ -17,6 +15,6 @@
 	 // from the [logs][log][color] input string (here 'red')
 	 [logs][log][color_code] = getResourceTuple("color_codes").get([logs][log][color]);
 
-	 // last 
+	 // last a simple character transformation
 	 [logs][log][city].toLowerCase();
 }
