@@ -12,8 +12,8 @@ keywords: # (optional)
   - Example
   - Parsers
 links: # (optional)
-  - name: Punch parsing documentation
-    url: https://doc.punchplatform.com/Reference_Guide/Punchlines/Spark/Nodes/Input/Elastic_Input.html
+  - name: Punch documentation
+    url: https://doc.punchplatform.com
 readme: | # (optional)
   Package documentation in markdown format
   Content added here will be rendered on Artifact Hub
@@ -24,6 +24,6 @@ maintainers: # (optional)
     email: pierre.dosne@punchplatform.com
 provider: # (optional)
   name: Thales Punch
-  email: punch@punchplatform.com  
+  email: contact@punchplatform.com  
 punchVersionCompatible: # (optional)
   - 6.x
