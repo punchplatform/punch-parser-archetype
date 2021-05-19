@@ -7,6 +7,14 @@
     <version>${version}</version>
     <packaging>jar</packaging>
     <name>${artifactId}</name>
+    <properties>
+        <metadataFilePath>${basedir}/target/classes/metadata.yml</metadataFilePath>
+        <artifactFilePath>${basedir}/target/${artifactId}-${version}.zip</artifactFilePath>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+
+    </properties>
+    
     <dependencies>
         <dependency>
                 <groupId>junit</groupId>
@@ -16,6 +24,12 @@
         </dependency>
     </dependencies>
     <build>
+        <resources>
+                <resource>
+                        <directory>metadata/</directory>
+                        <filtering>true</filtering>
+                </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -51,6 +65,24 @@
                             <descriptors>
                                 <descriptor>assembly/assembly.xml</descriptor>
                             </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>punch-rm-plugin</groupId>
+                <artifactId>punch-rm-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <id>deploy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>rm-archiver</goal>
+                        </goals>
+                        <configuration>
+                                <uri>http://149.202.173.40</uri>
+                                <tenant>kast</tenant>
                         </configuration>
                     </execution>
                 </executions>
