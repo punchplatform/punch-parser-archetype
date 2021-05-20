@@ -9,7 +9,7 @@
     <name>${artifactId}</name>
     <properties>
         <metadataFilePath>${basedir}/target/classes/metadata.yml</metadataFilePath>
-        <artifactFilePath>${basedir}/target/${artifactId}-${version}.zip</artifactFilePath>
+        <artifactFilePath>${basedir}/target/${project.artifactId}-${project.version}.zip</artifactFilePath>
         <timestamp>${maven.build.timestamp}</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
 
