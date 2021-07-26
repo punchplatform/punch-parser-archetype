@@ -81,6 +81,8 @@
                         </goals>
                         <configuration>
                             <uri>url_of_your_resource_manager</uri>
+                            <username>username_if_resource_manager_protected</username>
+                            <password>password_if_resource_manager_protected</password>
                         </configuration>
                     </execution>
                 </executions>
