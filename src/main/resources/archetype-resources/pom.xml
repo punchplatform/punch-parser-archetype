@@ -69,24 +69,24 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>punch-rm-plugin</groupId>
-                <artifactId>punch-rm-plugin</artifactId>
-                <version>1.0-SNAPSHOT</version>
-                <executions>
-                    <execution>
-                        <id>deploy</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>rm-archiver</goal>
-                        </goals>
-                        <configuration>
-                                <uri>http://149.202.173.40</uri>
-                                <tenant>kast</tenant>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--            <plugin>
+                            <groupId>org.thales.punch</groupId>
+                            <artifactId>punch-maven-deploy-plugin</artifactId>
+                            <version>1.0.0</version>
+                            <executions>
+                                <execution>
+                                    <id>deploy</id>
+                                    <phase>package</phase>
+                                    <goals>
+                                        <goal>rm-archiver</goal>
+                                    </goals>
+                                    <configuration>
+                                            <uri>url_of_your_resource_manager</uri>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+            -->
         </plugins>
     </build>
 </project>

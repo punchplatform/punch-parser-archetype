@@ -7,7 +7,7 @@ spec:
   punchlets:
   - punchlet: parser.punch
     labels:
-       description: "a sample parser for you to easily start coding your own"
+       description: "a sample punchlet for you to easily start coding your own"
        performance: 3000
        category: sample
        author: "punch team"
@@ -21,7 +21,7 @@ spec:
         type: string
   - punchlet: enrich.punch
     labels:
-       description: "a sample parser for you to easily start coding your own"
+       description: "a sample punchlet to illustrate chaining and enrichment concepts"
        performance: 2000
        category: sample
        author: "punch team"
