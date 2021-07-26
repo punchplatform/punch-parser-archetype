@@ -1,6 +1,8 @@
 {
-	// we add a simple boolean for the sake of illustraing punchlet chaining.
-	if ([logs][log][city]) {
-		[logs][log][enriched] = true;
-	}
+	 // Finally use the resource tuple to get a color numeric code and enrich 
+	 // from the [logs][log][color] input string (here 'red')
+	 [logs][log][color_code] = getResourceTuple("color_codes").get([logs][log][color]);
+
+	 // last a simple character transformation
+	 [logs][log][city].toLowerCase();
 }

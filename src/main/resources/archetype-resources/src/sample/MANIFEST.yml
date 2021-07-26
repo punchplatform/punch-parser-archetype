@@ -2,7 +2,7 @@
 apiVersion: 1.0
 kind: PunchletGroup
 metadata:
-  name: "sample group of related punchlets."
+  name: "sample group of related punchlets"
 spec:
   punchlets:
   - punchlet: parser.punch
@@ -12,8 +12,6 @@ spec:
        category: sample
        author: "punch team"
        vendor: thales
-    resources:
-    - resources/color_codes.json
     groks:
     - groks/pattern.grok
     inputStream:
@@ -28,6 +26,8 @@ spec:
        category: sample
        author: "punch team"
        vendor: thales
+    resources:
+    - resources/color_codes.json
     inputStream:
     - name: logs
       fields:

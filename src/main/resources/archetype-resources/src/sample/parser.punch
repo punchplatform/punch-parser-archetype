@@ -11,10 +11,4 @@
 
 	 grok("%{SAMPLEURI:[logs][log]}").on([logs][log][uri]);
 	 
-	 // Finally use the resource tuple to get a color numeric code
-	 // from the [logs][log][color] input string (here 'red')
-	 [logs][log][color_code] = getResourceTuple("color_codes").get([logs][log][color]);
-
-	 // last a simple character transformation
-	 [logs][log][city].toLowerCase();
 }
