@@ -9,7 +9,8 @@
         <fileSet filtered="true" encoding="UTF-8">
             <directory>assembly</directory>
             <includes>
-                <include>**/*assembly.xml</include>
+                <include>**/*assembly-src.xml</include>
+                <include>**/*assembly-artefact.xml</include>
             </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
