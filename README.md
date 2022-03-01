@@ -16,9 +16,6 @@ The punch comes equiped with many parsers. Should you write your own, this proje
 
 ## Basics
 
-First refer to the online [punchplatform documentation](https://doc.punchplkatform.com). TWhat is explained here required
-at minimum a punch 6.3.3. It is best to use a 6.3.4 or higher. 
-
 To create punch parsers, clone or download this repository, 
 go to that directory and simply execute 
 
@@ -30,43 +27,47 @@ From there leave that directory and in some folder that suits you,  create your 
 
 ```sh
 mvn archetype:generate \
-	-DarchetypeGroupId=org.thales.punch \
-	-DarchetypeArtifactId=parser \
+	-DarchetypeGroupId=io.github.punchplatform \
+	-DarchetypeArtifactId= punch-parser-artefact\
 	-DarchetypeVersion=1.0.0 \
 	-DgroupId=com.mycompany \
-	-DartifactId=parsers
+	-DartifactId=my-punch-parser
 ```
 
-Where of course you should replace 'com.mycompany' and 'parsers' with what suits you. 
+Where of course you should replace 'com.mycompany' and 'my-punch-parser' with what suits you. 
 If you execute the previous command you will get the following layout: 
 
 ```sh
+.
 ├── assembly
-│   └── assembly.xml
+│   ├── assembly-artefact.xml
+│   └── assembly-src.xml
+├── metadata
+│   └── metadata.yml
 ├── pom.xml
 ├── src
 │   └── com
 │       └── mycompany
 │           └── sample
 │               ├── MANIFEST.yml
+│               ├── README.md
+│               ├── enrich.punch
 │               ├── groks
 │               │   └── pattern.grok
-│               ├── enrich.punch
 │               ├── parser.punch
 │               ├── resources
 │               │   └── color_codes.json
 │               └── test
 │                   ├── sample.txt
-│                   ├── unit_chain.json
-│                   └── unit_punchlet.json
+│                   └── unit.json
 └── tools
     └── test.sh
 ```
 
 Where:
 
-* 'com/mycompany/parsers/sample' is a fully qualified name of your parsers. That will be the way to uniquely identify, and deploy your parsers on a production punch.
-* `parser.punch` and `enrich.punch` are sample punchlets. Check it out it illustrates the basics. This is where you write the actual logic of your log parsing or more generally data transformation.
+* 'com/mycompany/sample' is a fully qualified name of your parsers. That will be the way to uniquely identify, and deploy your parsers on a production punch.
+* `parser.punch` and `enrich.punch` are sample punchlets. Check them out they illustrates the basics. This is where you write the actual logic of your log parsing or more generally data transformation.
 * `groks/pattern.grok` is a sample grok pattern. The punch comes with many patterns directly loaded, but here is how you can add your own.
 * `resources/color_code.json` is a sample resource files. In this sample it is used to add a numerical color code from a color string value ('red' or 'green').
 * `test/unit_chain.json` and `test/unit_punchlet.json` are punch unit test files. That lets you define unit tests to ensure each punchlet or a sequence of punchlets behave exactly as you expect.
@@ -90,7 +91,7 @@ If you install the above com.mycompany.parsers:1.0.0 package to a punchplatform,
   com/mycompany/sample/parser.punch
 ```
 
-in your data pipelines. As simple as that. That basic mechanism ensure you r parsers will be worldwide unique.
+in your data pipelines. As simple as that. That basic mechanism ensure your parsers will be worldwide unique.
 
 Coming back to the grouping of several punchlets as part of a parser, and several parsers as part of 
 parser archive here is the rationale: the punch is designed to help you write modular functions. You can provide
@@ -113,28 +114,55 @@ is defined using a 'MANIFEST.yaml' file.
 That file defines the essential information about the parser. Here the sample MANIFEST.yaml generated above:
 
 ```yaml
-apiVersion: 1.0
-kind: PunchParserArchive
+---
+apiVersion: 8.0
+kind: PunchletGroup
 metadata:
-  name: "sample punch parser"
-  labels:
-    description: "a sample parser for you to easily start coding your own"
-    category: sample
-    author: "punch team"
-    performance: 3000
-    vendor: thales
+  name: "Sample group of related punchlets"
 spec:
-  punchlets:
-  - parser.punch
   resources:
-  - resources/color_codes.json
-  groks:
-  - groks/pattern.grok
+  - name: custom_groks
+    type: grok
+    url: groks/pattern.grok
+    description: "custom grok pattern to be loaded automatically"
+  - name: standard_groks
+    type: grok
+    url: /usr/share/punch/resources/patterns
+    description: "standard punch grok patterns"
+  - name: color_codes
+    type: json
+    url: resources/color_codes.json
+    description: "a json resource file to be loaded as a tuple"
+  punchlets:
+  - punchlet: parser.punch
+    labels:
+       description: "a sample punchlet for you to easily start coding your own"
+       performance: 3000
+       category: sample
+       author: "punch team"
+       vendor: thales
+    inputStream:
+    - name: logs
+      fields:
+      - name: data
+        type: string
+  - punchlet: enrich.punch
+    labels:
+       description: "a sample punchlet to illustrate chaining and enrichment concepts"
+       performance: 2000
+       category: sample
+       author: "punch team"
+       vendor: thales
+    inputStream:
+    - name: logs
+      fields:
+      - name: data
+        type: string
 ```
 
 ## Package Your Parser
 
-Go to the 'parsers' folder and simply type in: 
+Go to the 'my-punchlet-parser' folder and simply type in: 
 
 ```sh
 mvn clean install
@@ -149,32 +177,69 @@ punch.
 Once your parser are deployed, you can simply refer to them in your punchline. 
 Remember a punchline is a log processing pipeline where you chain your parser. 
 
-An example explains it all: 
+Checkout the https://github.com/punchplatform/starters repository for examples. 
+
+Here is a typical punchline: 
 
 ```yaml
-version: "7.0"
-name: dhcp-parser
-runtime: storm
-resources:
-- meta: com.mycompany:parsers:1.0.0
-dag:
-- type: syslog_input
-  settings:
-    listen:
-      proto: tcp
-      host: 0.0.0.0
-      port: 9902
-  publish:
-  - stream: logs
-    fields:
-    - log
-- type: punchlet_node
-  settings:
-    json_resources:
-    - com/mycompany/sample/resources/color_codes.json
-    punchlets:
-    - com/mycompany/sample/parser.punch
-  subscribe:
-  - component: syslog_input
-    stream: logs
+apiVersion: punchline.gitlab.thalesdigital.io/v2
+kind: StreamPunchline
+metadata:
+  name: mypunchline
+spec:
+  containers:
+    dependencies:
+      - parser:org.thales.punch:cisco:latest
+    applicationContainer:
+      image: ghcr.io/punchplatform/punchline-starter:latest
+  dag:
+  - id: input
+    kind: source
+    type: generator_source
+    exit_conditions:
+     success:
+        acks_greater_or_equal_to: 1
+        require_no_remaining_row_to_inject: true
+        require_no_pending_row: true
+     failure:
+        fails_greater_or_equal_to: 1
+    settings:
+      expectation: none
+      acked:
+      messages:
+        - "color=red city=Rome uri=https://punchplatform.com"
+    out:
+    - id: parser
+      table: logs
+      columns:
+      - name: log
+        type: string
+  - id: parser
+    type: punchlet_function
+    kind: function
+    settings:
+      resources:
+        - name: standard_groks
+          url: /usr/share/punch/resources/patterns
+          type: grok
+        - name: custom_groks
+          url: /mypatterns.grok
+          type: grok
+      punchlets:
+      - /punchlet.punch
+    out:
+    - id: print
+      table: logs
+      columns:
+      - name: log
+        type: string
+      - name: kv
+        type: string
+      - name: sampleuri
+        type: string
+  - id: print
+    type: punchlet_function
+    kind: function
+    settings:
+      punchlet_code: "{print(root);}"
 ```

@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
  
-  <groupId>com.github.punchplatform</groupId>
+  <groupId>io.github.punchplatform</groupId>
   <artifactId>punch-parser-artefact</artifactId>
   <version>8.0.0</version>
   <packaging>maven-archetype</packaging>
