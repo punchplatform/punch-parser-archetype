@@ -1,0 +1,45 @@
+---
+apiVersion: 8.0
+kind: PunchletGroup
+metadata:
+  name: "Sample group of related punchlets"
+spec:
+  resources:
+  - name: custom_groks
+    type: grok
+    url: groks/pattern.grok
+    description: "custom grok pattern to be loaded automatically"
+  - name: standard_groks
+    type: grok
+    url: /usr/share/punch/resources/patterns
+    description: "standard punch grok patterns"
+  - name: color_codes
+    type: json
+    url: resources/color_codes.json
+    description: "a json resource file to be loaded as a tuple"
+  punchlets:
+  - punchlet: parser.punch
+    labels:
+       description: "a sample punchlet for you to easily start coding your own"
+       performance: 3000
+       category: sample
+       author: "punch team"
+       vendor: thales
+    inputStream:
+    - name: logs
+      fields:
+      - name: data
+        type: string
+  - punchlet: enrich.punch
+    labels:
+       description: "a sample punchlet to illustrate chaining and enrichment concepts"
+       performance: 2000
+       category: sample
+       author: "punch team"
+       vendor: thales
+    inputStream:
+    - name: logs
+      fields:
+      - name: data
+        type: string
+        
