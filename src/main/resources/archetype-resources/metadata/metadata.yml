@@ -26,4 +26,4 @@ provider: # (optional)
   name: Thales Punch
   email: contact@punchplatform.com  
 punchVersionCompatible: # (optional)
-  - 6.x
+  - 8.x
