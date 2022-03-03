@@ -1,3 +1,10 @@
+# WATCHOUT
+
+This package is deprecated. Starting Punch 8.0 use https://github.com/punchplatform/punch-parser-archetype.
+
+The rest of this repository is kept only for bacward compatibility. 
+
+
 # punch-parser-artefact
 
 Quickstart generator to create your parser development project. 
