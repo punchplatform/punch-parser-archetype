@@ -28,7 +28,7 @@ From there leave that directory and in some folder that suits you,  create your 
 ```sh
 mvn archetype:generate \
 	-DarchetypeGroupId=io.github.punchplatform \
-	-DarchetypeArtifactId= punch-parser-archetype\
+	-DarchetypeArtifactId=punch-parser-archetype \
 	-DarchetypeVersion=8.0.0 \
 	-DgroupId=com.mycompany \
 	-DartifactId=my-punch-parser
