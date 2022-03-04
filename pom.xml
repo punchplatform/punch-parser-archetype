@@ -6,6 +6,9 @@
   <artifactId>punch-parser-archetype</artifactId>
   <version>8.0.0</version>
   <packaging>maven-archetype</packaging>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <build>
     <extensions>
       <extension>

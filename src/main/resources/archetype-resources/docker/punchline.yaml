@@ -32,14 +32,19 @@ spec:
       columns:
       - name: log
         type: string
-    - id: parser
-      kind: function
-      type: punchlet_function
-      settings:
-        resources:
-        - name: standard_groks
-          url: /usr/share/punch/resources/patterns
-          type: file
-          format: grok
-        punchlets:
-        - sample/enrich.punch
+  - id: parser
+    kind: function
+    type: punchlet_function
+    settings:
+      resources:
+      - name: color_codes
+        url: sample/resources/color_codes.json
+        type: file
+        format: json
+      - name: standard_groks
+        url: /usr/share/punch/resources/patterns
+        type: file
+        format: grok
+      punchlets:
+      - sample/parser.punch
+      - sample/enrich.punch
