@@ -12,7 +12,6 @@
         <timestamp>${maven.build.timestamp}</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -77,25 +76,6 @@
                             <descriptors>
                                 <descriptor>assembly/assembly-artefact.xml</descriptor>
                             </descriptors>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.thales.punch</groupId>
-                <artifactId>punch-maven-deploy-plugin</artifactId>
-                <version>1.0.0</version>
-                <executions>
-                    <execution>
-                        <id>deploy</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>rm-archiver</goal>
-                        </goals>
-                        <configuration>
-                            <uri>url_of_your_resource_manager</uri>
-                            <username>username_if_resource_manager_protected</username>
-                            <password>password_if_resource_manager_protected</password>
                         </configuration>
                     </execution>
                 </executions>
