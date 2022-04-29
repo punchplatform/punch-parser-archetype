@@ -1,0 +1,15 @@
+include:
+  - project: 'punch/parsers/toolbox'
+    ref: 'master'
+    file: '/cicd-templates.yaml'
+
+test:
+  extends: .test
+package-trunk:
+  extends: .package-trunk
+package-tag:
+  extends: .package-tag
+push-trunk:
+  extends: .push-trunk
+push-tag:
+  extends: .push-tag

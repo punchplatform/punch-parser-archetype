@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.thalesgroup.punchplatform</groupId>
-  <artifactId>punch-parser-artefact</artifactId>
+  <artifactId>punch-parser-archetype</artifactId>
   <version>1.0.0</version>
   <packaging>maven-archetype</packaging>
   <properties>
