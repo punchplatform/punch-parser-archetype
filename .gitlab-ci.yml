@@ -1,61 +1,22 @@
 stages:
-  - package
-  - push
+  - sync
 
-package-trunk:
-  image: maven:3.6.3-openjdk-11
-  stage: package
-  tags:
-    - ea_kube
-  script:
-    - mvn clean install -Drevision=${CI_COMMIT_BRANCH}-dev
-  artifacts:
-    paths:
-      - target/
-  rules:
-    - if: '$CI_COMMIT_TAG'
-      when: never
-    - if: '$CI_COMMIT_REF_PROTECTED == "true"'
+variables:
+  PUNCH_GITHUB_USER: ${PUNCH_GITHUB_USER}
+  PUNCH_GITHUB_TOKEN: ${PUNCH_GITHUB_TOKEN}
 
-package-tag:
-  image: maven:3.6.3-openjdk-11
-  stage: package
-  tags:
-    - ea_kube
-  script:
-    - mvn clean install -Drevision=${CI_COMMIT_TAG}
-  artifacts:
-    paths:
-      - target/
-  rules:
-    - if: '$CI_COMMIT_REF_PROTECTED == "true" && $CI_COMMIT_TAG'
-
-push-trunk:
+Sync with Github:
   image: alpine:3.15
-  stage: push
+  stage: sync
+  retry: 1
   tags:
-    - ea_kube
+    - docker-runner
   before_script:
-    - apk add curl
+    - apk update
+    - apk add git
   script:
-    - curl -X PUT "${ARTIFACTORY_URL}/${CI_PROJECT_NAME}/${CI_PROJECT_NAME}-${CI_COMMIT_BRANCH}-dev.zip"
-      -T target/${CI_PROJECT_NAME}-${CI_COMMIT_BRANCH}-dev.zip
-      -u ${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}
+    - git remote remove github || true
+    - git remote add github https://${PUNCH_GITHUB_USER}:${PUNCH_GITHUB_TOKEN}@github.com/punchplatform/punch-parser-archetype.git
+    - git push github HEAD:8.0
   rules:
-    - if: '$CI_COMMIT_TAG'
-      when: never
-    - if: '$CI_COMMIT_REF_PROTECTED == "true"'
-
-push-tag:
-  image: alpine:3.15
-  stage: push
-  tags:
-    - ea_kube
-  before_script:
-    - apk add curl
-  script:
-    - curl -X PUT "${ARTIFACTORY_URL}/${CI_PROJECT_NAME}/${CI_PROJECT_NAME}-${CI_COMMIT_TAG}.zip"
-      -T target/${CI_PROJECT_NAME}-${CI_COMMIT_TAG}.zip
-      -u ${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}
-  rules:
-    - if: '$CI_COMMIT_REF_PROTECTED == "true" && $CI_COMMIT_TAG'
+    - if: '$CI_COMMIT_BRANCH == "8.0-github"'
