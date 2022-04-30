@@ -1,7 +1,4 @@
-# punch-parser-artefact
-
-TODO: add branch to remove internal tooling 
-TODO: add CICD to sync Github with this repo
+# punch-parser-archetype
 
 Quickstart generator to create your parser development project. 
 
@@ -44,7 +41,7 @@ If you execute the previous command you will get the following layout:
 ```sh
 .
 ├── assembly
-│   ├── assembly-artefact.xml
+│   ├── assembly-artifact.xml
 │   └── assembly-src.xml
 ├── metadata
 │   └── metadata.yml

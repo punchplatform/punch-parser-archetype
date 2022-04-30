@@ -66,7 +66,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>artefact-zip</id>
+                        <id>artifact-zip</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
@@ -74,7 +74,7 @@
                         <configuration>
                             <appendAssemblyId>true</appendAssemblyId>
                             <descriptors>
-                                <descriptor>assembly/assembly-artefact.xml</descriptor>
+                                <descriptor>assembly/assembly-artifact.xml</descriptor>
                             </descriptors>
                         </configuration>
                     </execution>

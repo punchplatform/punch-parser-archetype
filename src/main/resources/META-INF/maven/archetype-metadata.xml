@@ -10,7 +10,7 @@
             <directory>assembly</directory>
             <includes>
                 <include>**/*assembly-src.xml</include>
-                <include>**/*assembly-artefact.xml</include>
+                <include>**/*assembly-artifact.xml</include>
             </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
