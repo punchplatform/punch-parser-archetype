@@ -21,8 +21,12 @@
         </fileSet>
         <fileSet filtered="false" encoding="UTF-8">
             <directory>tools</directory>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+            <directory/>
             <includes>
-                <include>**/*test.sh</include>
+                <include>.gitignore</include>
+                <include>.gitlab-ci.yml</include>
             </includes>
         </fileSet>
     </fileSets>

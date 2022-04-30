@@ -1,5 +1,8 @@
 # punch-parser-artefact
 
+TODO: add branch to remove internal tooling 
+TODO: add CICD to sync Github with this repo
+
 Quickstart generator to create your parser development project. 
 
 On the punch you develop parsers as part of maven projects. A single project can contain
@@ -30,8 +33,9 @@ From there leave that directory and in some folder that suits you,  create your 
 
 ```sh
 mvn archetype:generate \
-	-DarchetypeGroupId=org.thales.punch \
-	-DarchetypeArtifactId=parser \
+    -DarchetypeCatalog=local \
+	-DarchetypeGroupId=com.thalesgroup.punchplatform \
+	-DarchetypeArtifactId=punch-parser-archetype \
 	-DarchetypeVersion=1.0.0 \
 	-DgroupId=com.mycompany \
 	-DartifactId=parsers
