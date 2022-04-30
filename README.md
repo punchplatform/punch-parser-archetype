@@ -1,8 +1,5 @@
 # punch-parser-artefact
 
-TODO: add branch to remove internal tooling 
-TODO: add CICD to sync Github with this repo
-
 Quickstart generator to create your parser development project. 
 
 On the punch you develop parsers as part of maven projects. A single project can contain

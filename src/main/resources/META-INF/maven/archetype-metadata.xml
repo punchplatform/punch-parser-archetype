@@ -22,12 +22,5 @@
         <fileSet filtered="false" encoding="UTF-8">
             <directory>tools</directory>
         </fileSet>
-        <fileSet filtered="false" encoding="UTF-8">
-            <directory/>
-            <includes>
-                <include>.gitignore</include>
-                <include>.gitlab-ci.yml</include>
-            </includes>
-        </fileSet>
     </fileSets>
 </archetype-descriptor>
