@@ -12,10 +12,9 @@ package-trunk:
   artifacts:
     paths:
       - target/
-  rules:
-    - if: '$CI_COMMIT_TAG'
-      when: never
-    - if: '$CI_COMMIT_REF_PROTECTED == "true"'
+  except:
+    refs:
+      - tags
 
 package-tag:
   image: maven:3.6.3-openjdk-11
@@ -27,8 +26,9 @@ package-tag:
   artifacts:
     paths:
       - target/
-  rules:
-    - if: '$CI_COMMIT_REF_PROTECTED == "true" && $CI_COMMIT_TAG'
+  only:
+    refs:
+      - tags
 
 push-trunk:
   image: alpine:3.15
@@ -41,10 +41,9 @@ push-trunk:
     - curl -X PUT "${ARTIFACTORY_URL}/${CI_PROJECT_NAME}/${CI_PROJECT_NAME}-${CI_COMMIT_BRANCH}-dev.zip"
       -T target/${CI_PROJECT_NAME}-${CI_COMMIT_BRANCH}-dev.zip
       -u ${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}
-  rules:
-    - if: '$CI_COMMIT_TAG'
-      when: never
-    - if: '$CI_COMMIT_REF_PROTECTED == "true"'
+  except:
+    refs:
+      - tags
 
 push-tag:
   image: alpine:3.15
@@ -57,5 +56,6 @@ push-tag:
     - curl -X PUT "${ARTIFACTORY_URL}/${CI_PROJECT_NAME}/${CI_PROJECT_NAME}-${CI_COMMIT_TAG}.zip"
       -T target/${CI_PROJECT_NAME}-${CI_COMMIT_TAG}.zip
       -u ${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}
-  rules:
-    - if: '$CI_COMMIT_REF_PROTECTED == "true" && $CI_COMMIT_TAG'
+  only:
+    refs:
+      - tags
