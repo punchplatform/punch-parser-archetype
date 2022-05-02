@@ -1,6 +1,7 @@
 <archetype-descriptor
-        xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 https://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
+        xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
         name="parser">
     <fileSets>
         <fileSet filtered="true" packaged="true">
@@ -19,14 +20,15 @@
                 <include>**/metadata.yml</include>
             </includes>
         </fileSet>
-        <fileSet filtered="false" encoding="UTF-8">
+        <fileSet encoding="UTF-8">
             <directory>tools</directory>
         </fileSet>
-        <fileSet filtered="false" encoding="UTF-8">
+        <fileSet encoding="UTF-8">
             <directory/>
             <includes>
                 <include>.gitignore</include>
                 <include>.gitlab-ci.yml</include>
+                <include>Dockerfile</include>
             </includes>
         </fileSet>
     </fileSets>
