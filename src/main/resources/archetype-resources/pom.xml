@@ -3,10 +3,11 @@
 
     <groupId>${groupId}</groupId>
     <artifactId>${artifactId}</artifactId>
-    <version>${version}</version>
+    <version>${revision}</version>
     <packaging>jar</packaging>
     <name>${artifactId}</name>
     <properties>
+        <revision>${version}</revision>
         <metadataFilePath>${basedir}/target/classes/metadata.yml</metadataFilePath>
         <artifactFilePath>${basedir}/target/${project.artifactId}-${project.version}.zip</artifactFilePath>
         <timestamp>${maven.build.timestamp}</timestamp>
