@@ -30,7 +30,7 @@ mvn archetype:generate \
     -DarchetypeCatalog=local \
 	-DarchetypeGroupId=com.thalesgroup.punchplatform \
 	-DarchetypeArtifactId=punch-parser-archetype \
-	-DarchetypeVersion=1.0.0 \
+	-DarchetypeVersion=8.0-dev \
 	-DgroupId=com.mycompany \
 	-DartifactId=my-punch-parser
 ```
